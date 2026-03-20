@@ -1,6 +1,7 @@
 package testinglab;
 import org.junit.jupiter.api.Test;
 import java.util.HashMap;
+import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MiddleEarthBattleTest {
@@ -9,9 +10,9 @@ class MiddleEarthBattleTest {
 
     @Test
     void calculateStrength_numenoreans4_returns16() throws IllegalArgumentException {
-        HashMap<String, Integer> kindBattle = new HashMap<>();
+        Map<String, Integer> kindBattle = new HashMap<>();
         kindBattle.put("Númenóreanos", 4);
-        int resultado = battle.calculateStrength(kindBattle, battle.kindArmy);
+        int resultado = battle.calculateStrength(kindBattle, battle.getKindArmy());
         assertEquals(16, resultado);
     }
 
@@ -23,9 +24,9 @@ class MiddleEarthBattleTest {
 
     @Test
     void kindWinsNotEvil() throws IllegalArgumentException {
-        HashMap<String, Integer> kindBattle = new HashMap<>();
+        Map<String, Integer> kindBattle = new HashMap<>();
         kindBattle.put("Elfos", 5);
-        int resultado = battle.calculateStrength(kindBattle, battle.kindArmy);
+        int resultado = battle.calculateStrength(kindBattle, battle.getKindArmy());
         assertEquals(25, resultado);
     }
 
@@ -44,9 +45,9 @@ class MiddleEarthBattleTest {
     @Test
     void invalidRace() {
         Exception e = assertThrows(IllegalArgumentException.class, () -> {
-            HashMap<String, Integer> ejercito = new HashMap<>();
-            ejercito.put("Dragones", 3);
-            battle.calculateStrength(ejercito, battle.kindArmy);
+            Map<String, Integer> army = new HashMap<>();
+            army.put("Dragones", 3);
+            battle.calculateStrength(army, battle.getKindArmy());
         });
         assertEquals("Invalid race", e.getMessage());
     }
