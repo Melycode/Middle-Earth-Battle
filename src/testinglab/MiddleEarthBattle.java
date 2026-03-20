@@ -1,30 +1,36 @@
 package testinglab;
 import java.util.HashMap;
+import java.util.Map; 
 
 public class MiddleEarthBattle {
 
-	HashMap<String, Integer> kindArmy = new HashMap<>(); 
-	HashMap<String, Integer> evilArmy = new HashMap<>(); 
+	private Map<String, Integer> kindArmy = new HashMap<>(); 
+	private Map<String, Integer> evilArmy = new HashMap<>(); 
 	
 	
 	public MiddleEarthBattle() {
-		
 		kindArmy.put("Pelosos", 1); 
 		kindArmy.put("Sureños buenos", 2); 
 		kindArmy.put("Enanos", 3); 
 		kindArmy.put("Númenóreanos", 4); 
 		kindArmy.put("Elfos", 5); 
 	
-		
 		evilArmy.put("Sureños malos", 2); 
 		evilArmy.put("Orcos", 2); 
 		evilArmy.put("Goblins", 2); 
 		evilArmy.put("Huargos", 3); 
 		evilArmy.put("Trolls", 5); 
 	}
+
+	public Map<String, Integer> getKindArmy() {
+    	return kindArmy;
+	}
+
+	public Map<String, Integer> getEvilArmy() {
+    	return evilArmy;
+	}
 	
-	
-	public void battleForTheMiddleEarth(HashMap<String, Integer> kindBattle, HashMap<String, Integer> evilBattle) {
+	public String battleForTheMiddleEarth(Map<String, Integer> kindBattle, Map<String, Integer> evilBattle) {
 	    int kindPoints = calculateStrength(kindBattle, kindArmy);
 	    int evilPoints = calculateStrength(evilBattle, evilArmy);
 	    
@@ -34,12 +40,15 @@ public class MiddleEarthBattle {
 	    int evilCount = evilBattle.values().iterator().next();
 
 	    String result = calculateResult(kindPoints, evilPoints);
-	    System.out.println(kindCount + " " + kindName + " (" + kindPoints + ") " + result + " " + evilCount + " " + evilName + " (" + evilPoints + ").");
+	    String output = kindCount + " " + kindName + " (" + kindPoints + ") " + result + " " + evilCount + " " + evilName + " (" + evilPoints + ").";
+
+		System.out.println(output);
+        return output;	
 	}
 	
-	public int calculateStrength(HashMap<String, Integer> battle, HashMap<String, Integer> army) throws IllegalArgumentException {
+	public int calculateStrength(Map<String, Integer> battle, Map<String, Integer> army) throws IllegalArgumentException {
 	    int points = 0;
-	    for (HashMap.Entry<String, Integer> entry : battle.entrySet()) {
+	    for (Map.Entry<String, Integer> entry : battle.entrySet()) {
 	        if (!army.containsKey(entry.getKey())) {
 	            throw new IllegalArgumentException("Invalid race");
 	        }
